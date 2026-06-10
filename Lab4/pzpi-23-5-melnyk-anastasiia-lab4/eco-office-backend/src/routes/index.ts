@@ -1,0 +1,26 @@
+import { Router } from 'express';
+import authRoutes from './auth.routes';
+import plantSpeciesRoutes from './plant-species.routes';
+import plantsRoutes from './plant.routes';
+import sensorsRoutes from './sensor.routes';
+import readingsRoutes from './reading.routes';
+import carelogRoutes from './care-log.routes';
+import tasksRoutes from './task.routes';
+import locationsRoutes from './location.routes';
+import backupRoutes from './backup.routes';
+import statsRoutes from './stats.routes';
+import userRoutes from './user.routes';
+const router = Router();
+
+router.use('/auth', authRoutes);
+router.use('/species', plantSpeciesRoutes);
+router.use('/plants', plantsRoutes);
+router.use('/sensors', sensorsRoutes);
+router.use('/readings', readingsRoutes);
+router.use('/logs', carelogRoutes);
+router.use('/tasks', tasksRoutes);
+router.use('/locations', locationsRoutes);
+router.use('/backups',backupRoutes);
+router.use('/stats',statsRoutes);
+router.use('/users',userRoutes);
+export default router;

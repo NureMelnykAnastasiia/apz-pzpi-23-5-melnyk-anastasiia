@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: backend-app # Даємо фіксоване ім'я, щоб IoT міг до нього звертатись
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/ecooffice
+      - PORT=3000
+      - JWT_SECRET=supersecretkey
+    depends_on:
+      - db
+    networks:
+      - eco-office-network  # <--- Підключаємо до спільної мережі
+    volumes:
+      - ./backups:/app/backups
+      - ./uploads:/app/uploads
+
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ecooffice
+    ports:
+      - "5432:5432"
+    networks:
+      - eco-office-network  # <--- Підключаємо до спільної мережі
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+# Оголошуємо мережу
+networks:
+  eco-office-network:
+    name: eco-office-network
+    driver: bridge
+
+volumes:
+  postgres_data:
