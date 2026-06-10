@@ -1,0 +1,33 @@
+@import "tailwindcss";
+@config "../tailwind.config.js"; /* Підключаємо нашу еко-палітру з конфігу */
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased font-sans selection:bg-brand-100 selection:text-brand-900;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-100;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full hover:bg-slate-400 transition-colors;
+  }
+}
+
+@layer components {
+  .eco-input {
+    @apply w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all duration-200 placeholder:text-slate-400 text-sm;
+  }
+  
+  .eco-btn-primary {
+    @apply px-5 py-3 bg-brand-600 text-white rounded-xl font-medium hover:bg-brand-700 active:transform active:scale-[0.98] transition-all duration-200 shadow-sm flex items-center justify-center gap-2 text-sm;
+  }
+
+  .eco-btn-secondary {
+    @apply px-5 py-3 bg-white text-slate-700 border border-slate-200 rounded-xl font-medium hover:bg-slate-50 hover:text-slate-900 active:transform active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2 text-sm;
+  }
+}
